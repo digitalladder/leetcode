@@ -1,6 +1,6 @@
-Problem 3 /Longest Substring Without Repeating Characters
+#Problem 3 /Longest Substring Without Repeating Characters
 
-My solution:
+#My solution:
 #
 class Solution:
     def lengthOfLongestSubstring(self, s):
@@ -23,7 +23,7 @@ class Solution:
                 maxk=j
         return maxk
 
-An O(n) solution
+#An O(n) solution
 ##
 class Solution:
     # @return an integer
