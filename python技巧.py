@@ -16,4 +16,4 @@ class Solution(object):
             return 0
         if not root.children:
             return 1
-        return max(map(self.maxDepth,root.children))+1	#map function
+        return max(map(self.maxDepth,root.children))+1	#map function  递归，用map更简洁
