@@ -1,5 +1,5 @@
 //Binary tree preorder traverse
-public class solution{
+public class solution_preorder{
 	public list<Integer> preorderTraversal(TreeNode root) {
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		List<Integer> preorder = new ArrayList<Integer>();
@@ -25,7 +25,7 @@ public class solution{
 }
 
 //inorder traverse
-public class solution{
+public class solution_inorder{
 	public ArrayList<Integer> inorderTraversal(TreeNode root){
 		Stack<TreeNode> stack =new Stack<TreeNode>();
 		ArrayList<Integer> resule=new ArrayList<Integer>();
@@ -45,36 +45,38 @@ public class solution{
 }
 
 //postorder traverse
-public ArrayList<integer> postorderTraversal(TreeNode root){
-	ArrayList<Integer> result = new ArrayList<Integer>();
-	Stack<TreeNode> stack = new Stack<TreeNode>();
-	TreeNode prev =null; //previously traversed node
-	TreeNode curr =root;
+public class solution_postorder {
+	public ArrayList<integer> postorderTraversal(TreeNode root){
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		TreeNode prev =null; //previously traversed node
+		TreeNode curr =root;
 
-	if (root == null){
+		if (root == null){
+			return result;
+		}
+
+		stack.push(root);
+		while( !stack.empty()){
+			curr = stack.peek();
+			if (prev == null || prev.left == curr ||prev.right ==curr){ //traverse down the tree
+				if (curr.left != null){
+					stack.push(curr.left);
+				} else if (curr.right != null){
+					stack.push(curr.right);
+				}
+
+			} else if (curr.left == prev){ //traverse up the tree from the left
+				if (curr.right != null){
+					stack.push(curr.right);
+				}
+			} else { //traverse up the tree from the right
+				result.add(curr.val);
+				stack.pop();
+			}
+			prev = curr;
+		}
+
 		return result;
 	}
-
-	stack.push(root);
-	while( !stack.empty()){
-		curr = stack.peek();
-		if (prev == null || prev.left == curr ||prev.right ==curr){ //traverse down the tree
-			if (curr.left != null){
-				stack.push(curr.left);
-			} else if (curr.right != null){
-				stack.push(curr.right);
-			}
-
-		} else if (curr.left == prev){ //traverse up the tree from the left
-			if (curr.right != null){
-				stack.push(curr.right);
-			}
-		} else { //traverse up the tree from the right
-			result.add(curr.val);
-			stack.pop();
-		}
-		prev = curr;
-	}
-
-	return result;
 }
