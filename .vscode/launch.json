@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test_capturegroup",
+            "request": "launch",
+            "mainClass": "testscript.Test_capturegroup",
+            "projectName": "leetcode_ebcfd6a7"
+        },
+        {
             "name": "Python: Current File (Integrated Terminal)",
             "type": "python",
             "request": "launch",
