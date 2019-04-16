@@ -1,6 +1,8 @@
+import java.util.*;
+
 //Binary tree preorder traverse
-public class solution_preorder{
-	public list<Integer> preorderTraversal(TreeNode root) {
+class solution_preorder{
+	public List<Integer> preorderTraversal(TreeNode root) {
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		List<Integer> preorder = new ArrayList<Integer>();
 
@@ -25,10 +27,10 @@ public class solution_preorder{
 }
 
 //inorder traverse
-public class solution_inorder{
+class solution_inorder{
 	public ArrayList<Integer> inorderTraversal(TreeNode root){
 		Stack<TreeNode> stack =new Stack<TreeNode>();
-		ArrayList<Integer> resule=new ArrayList<Integer>();
+		ArrayList<Integer> result=new ArrayList<Integer>();
 		TreeNode curt = root;
 		while(curt!=null||!stack.empty()){
 			while(curt!=null){
@@ -45,8 +47,8 @@ public class solution_inorder{
 }
 
 //postorder traverse
-public class solution_postorder {
-	public ArrayList<integer> postorderTraversal(TreeNode root){
+class solution_postorder {
+	public ArrayList<Integer> postorderTraversal(TreeNode root){
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		TreeNode prev =null; //previously traversed node
