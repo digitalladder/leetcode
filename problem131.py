@@ -27,3 +27,19 @@ class Solution(object):
         return True
 
 #Solution two (more faster way)        
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        h ={}
+        for i in range(len(s)):
+            h[i]=[]
+            # print i,h
+            for j in range(i,-1,-1):
+                if s[j:i+1] == s[j:i+1][::-1]:
+                    # print s[j:i+1]
+                    if j-1>=0:
+                        # print i,j
+                        for an in h[j-1]:
+                            h[i].append(an+[s[j:i+1]])
+                    else:
+                        h[i].append([s[j:i+1]])
+        return h[len(s)-1]
