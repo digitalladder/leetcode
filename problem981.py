@@ -1,4 +1,6 @@
 #problem981 time based key-value store
+import collections
+import bisect
 class TimeMap(object):
 
     def __init__(self):

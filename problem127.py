@@ -1,4 +1,5 @@
 #problem 127 / word ladder
+import collections
 class Solution(object):
     def ladderLength(self, beginWord, endWord, wordList):
         """
