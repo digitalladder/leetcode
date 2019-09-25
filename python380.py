@@ -1,4 +1,4 @@
-#python 380 / insert delete getrandom O(1)
+#problem 380 / insert delete getrandom O(1)
 import random
 class RandomizedSet(object):
 
