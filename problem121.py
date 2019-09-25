@@ -13,3 +13,21 @@ class Solution(object):
             elif price-minprice > maxprofit:
                 maxprofit = price-minprice
         return maxprofit
+
+#
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not prices:
+            return 0
+        minp = prices[0]
+        maxpro = 0
+        for i in range(1,len(prices)):
+            if prices[i] < minp:
+                minp = prices[i]
+            else:
+                maxpro = max(maxpro,prices[i]-minp)
+        return maxpro
