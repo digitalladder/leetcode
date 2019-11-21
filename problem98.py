@@ -20,11 +20,7 @@ class Solution(object):
         val = root.val
         if val <= lowlimit or val >= uplimit:
             return False
-        if not self.isvalid(root.left,lowlimit,val):
-            return False
-        if not self.isvalid(root.right,val,uplimit):
-            return False
-        return True
+        return self.isvalid(root.left,lowlimit,val) and self.isvalid(root.right,val,uplimit)
 
 #inorder traverse
 class Solution:
