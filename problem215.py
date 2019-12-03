@@ -1,5 +1,5 @@
 #problem 215 / Kth largest element in an array
-#快排算法应用，将数组分为两部分知道大于pivot的数个数为k
+#快排算法应用，将数组分为两部分直到大于pivot的数个数为k
 #kth largest转换为 n-k smallest
 import random
 class Solution(object):
