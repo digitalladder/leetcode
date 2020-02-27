@@ -1,0 +1,13 @@
+#problem 503 / next greater element II
+class Solution(object):
+    def nextGreaterElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        stack, res = [], [-1] * len(nums)
+        for i in range(len(nums)) * 2:      #range * 2  表示循环两次
+            while stack and (nums[stack[-1]] < nums[i]):
+                res[stack.pop()] = nums[i]
+            stack.append(i)
+        return res
