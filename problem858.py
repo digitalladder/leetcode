@@ -10,12 +10,12 @@ class Solution(object):
             if a == 0:
                 return b
             return gcd(b%a,a)
-        g = gcd(p,q)
-        p = (p/g)%2
-        q = (q/g)%2
-        if p and q:
+        g = gcd(p,q)        #lcm = p*q/g
+        n = (p/g)%2         #n = lcm/q
+        m = (q/g)%2         #m = lcm/p
+        if n and m:
             return 1
-        if p and not q:
+        if n and not m:
             return 0
-        if not p and q:
+        if not n and m:
             return 2
