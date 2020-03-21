@@ -5,24 +5,21 @@ class LRUCache(object):
         """
         :type capacity: int
         """
-        self.capacity = capacity
-        self.cache = {}
+        self.cap = capacity
         self.size = 0
-        self.head = DoubleLinkedNode()
-        self.tail = DoubleLinkedNode()
-        self.head.next = self.tail
-        self.tail.prev = self.head
+        self.cache = {}
+        self.linked_list = dlinklist()
 
     def get(self, key):
         """
         :type key: int
         :rtype: int
         """
-        node = self.cache.get(key, None)
-        if not node:
+        if key not in self.cache:
             return -1
-        self.move_to_head(node)
-        return node.val
+        node = self.cache[key]
+        self.linked_list.move_tohead(node)
+        return node.value
 
     def put(self, key, value):
         """
@@ -30,51 +27,55 @@ class LRUCache(object):
         :type value: int
         :rtype: None
         """
-        node = self.cache.get(key)
-        if not node:
-            newnode = DoubleLinkedNode()
-            newnode.key = key
-            newnode.val = value
-            
-            self.cache[key] = newnode
-            self.add_node(newnode)
-            self.size = self.size+1
-            
-            if self.size > self.capacity:
-                tail = self.remove_tail()
-                del self.cache[tail.key]
-                self.size = self.size-1
+        if key in self.cache:
+            node = self.cache[key]
+            node.value = value
+            self.linked_list.move_tohead(node)
         else:
-            node.val = value
-            self.move_to_head(node)
+            node = Node(key,value)
+            self.cache[key] = node
+            self.linked_list.add_node_tohead(node)
+            self.size += 1
+        if self.size > self.cap:
+            tail = self.linked_list.pop_tail()
+            self.cache.pop(tail.key)
+            self.size -= 1
         
-    def add_node(self, node):
-        node.prev = self.head
-        node.next = self.head.next
-        self.head.next.prev = node
-        self.head.next = node
-        
-    def remove_tail(self):
-        rmnode = self.tail.prev
-        rmnode.prev.next = self.tail
-        self.tail.prev = rmnode.prev
-        return rmnode
-        
-    def move_to_head(self, node):
-        mn = node
-        node.prev.next = node.next
-        node.next.prev = node.prev
-        node.prev = self.head
-        node.next = self.head.next
-        self.head.next = node
-        node.next.prev = node
-        
-class DoubleLinkedNode():
-    def __init__(self):
-        self.key = 0
-        self.val = 0
-        self.prev = None
+class Node(object):
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.pre = None
         self.next = None
+        
+class dlinklist(object):
+    def __init__(self):
+        self.head = Node(0,0)
+        self.tail = Node(0,0)
+        self.head.next = self.tail
+        self.tail.pre = self.head
+    
+    def move_tohead(self,node):
+        self.remove(node)
+        self.add_node_tohead(node)
+    
+    def add_node_tohead(self,node):
+        nextnode = self.head.next
+        node.next = nextnode
+        nextnode.pre = node
+        self.head.next = node
+        node.pre = self.head
+        
+    def pop_tail(self):
+        res = self.tail.pre
+        self.remove(res)
+        return res
+    
+    def remove(self,node):
+        pre = node.pre
+        new = node.next
+        pre.next = new
+        new.pre = pre
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
