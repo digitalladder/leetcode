@@ -18,3 +18,26 @@ class Solution(object):
         res = []
         helper(res,0,digits,'')
         return res
+
+# approach 2
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        dic = {2:['a','b','c'],3:['d','e','f'],4:['g','h','i'],
+               5:['j','k','l'],6:['m','n','o'],7:['p','q','r','s'],
+               8:['t','u','v'],9:['w','x','y','z']}
+        res = []
+        for digit in digits:
+            temp = []
+            if not res:
+                res.extend(dic[int(digit)])
+            else:
+                while res:
+                    nextstep = res.pop()
+                    for e in dic[int(digit)]:
+                        temp.append(nextstep+e)
+                res = temp
+        return res
